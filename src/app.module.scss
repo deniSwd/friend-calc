@@ -6,15 +6,26 @@
   align-items: center;
   width: 100%;
   height: 100vh;
+
   .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
     width: 1440px;
     height: 800px;
+    padding: 0 48px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+
     h1 {
+      width: 753px;
+      height: 98px;
       font-family: Nekst-Black, sans-serif;
       font-size: 54px;
+      line-height: 90%;
       color: $black;
     }
+
     p {
       font-family: Gilroy-Medium, sans-serif;
       font-size: 16px;
