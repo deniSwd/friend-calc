@@ -1,0 +1,26 @@
+@import "src/styles/vars";
+
+.resultBox {
+  .title {
+    font-family: Gilroy-Regular, sans-serif;
+    font-size: 16px;
+    line-height: 150%;
+    color: $lightgray;
+    margin-bottom: 8px;
+  }
+
+  .result {
+    display: flex;
+    height: 54px;
+    align-items: center;
+    font-family: Nekst-Black, sans-serif;
+    font-size: 54px;
+    color: $darkgray;
+
+    .rub {
+      height: 54px;
+      line-height: 44px;
+      margin-left: 10px;
+    }
+  }
+}

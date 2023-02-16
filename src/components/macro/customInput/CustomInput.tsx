@@ -34,8 +34,10 @@ export const CustomInput: FC<CustomInputProps> = ({
   //Обрабатываем значение из инпута с испоьзованием маски
   const handleChange = () => {
     if (inputValue.current === null) return
-    const withMaskValue = (+inputValue.current.value
-      .replace(/\D/g, '')).toLocaleString('en-US').replaceAll(',', ' ')
+    const withMaskValue =
+      (Number(inputValue.current.value.replace(/\D/g, '')))
+      .toLocaleString('en-US')
+      .replaceAll(',', ' ')
     setCurrentValue(withMaskValue)
   }
   //Устанавливаем значение в допустимом диапазоне
