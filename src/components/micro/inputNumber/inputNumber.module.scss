@@ -25,6 +25,10 @@
     &:focus {
       background-color: transparent;
     }
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 
   .placeholder {
@@ -39,7 +43,7 @@
     translate: 0 -60%;
   }
 
-  .percent{
+  .percent {
     position: absolute;
     right: 7px;
     top: 7px;
@@ -48,14 +52,15 @@
     align-items: center;
     width: 69px;
     height: 54px;
-    background-color:$percentField;
+    background-color: $percentField;
     border-radius: 16px;
     font-family: Nekst-Black, sans-serif;
     font-size: 20px;
     line-height: 24px;
     color: $lightgray;
     z-index: 100;
-    .percentPlaceholder{
+
+    .percentPlaceholder {
       position: absolute;
       right: 80px;
       top: 50%;

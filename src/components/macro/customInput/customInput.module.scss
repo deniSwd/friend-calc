@@ -1,0 +1,27 @@
+@import '../../../styles/vars';
+
+.customInputWrap {
+  height: 119px;
+  width: 427px;
+
+  .title {
+    font-family: Gilroy-Regular, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: $lightgray;
+    margin: 0 0 24px 0;
+  }
+
+  .customInput {
+    position: relative;
+    z-index: 20;
+
+    .rangeWrap {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      translate: 0 calc(-50% - 1px);
+      z-index: 40;
+    }
+  }
+}

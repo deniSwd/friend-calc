@@ -21,8 +21,8 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(({
         <div className={s.percent}>
           <div>{percentValue}%</div>
           <div className={s.percentPlaceholder}>{placeholderValue}</div>
-        </div> :
-        <div className={s.placeholder}>{placeholderValue}</div>
+        </div>
+        : <div className={s.placeholder}>{placeholderValue}</div>
       }
     </div>
   )
