@@ -1,1 +1,1 @@
-export const withMask = (value: number): string => value.toLocaleString('en-US').replaceAll(',', ' ')
+export const withMask = (value: number): string => Math.round(value).toLocaleString('en-US').replaceAll(',', ' ')

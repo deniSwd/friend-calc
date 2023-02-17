@@ -10,50 +10,50 @@ interface CustomInputProps {
   maxParameter: number
   title: string
   percent?: number
+  numberValue: number
+  setNumberValue: (numberValue: number) => void
 }
 
 export const CustomInput: FC<CustomInputProps> = ({
+                                                    numberValue,
+                                                    setNumberValue,
                                                     placeholderValue,
                                                     minParameter,
                                                     maxParameter,
                                                     title,
                                                     percent
                                                   }) => {
-  //Текущее значение типа string с маской
-  const [currentValue, setCurrentValue] = useState(withMask(minParameter))
-  //Текущее значение типа number
-  const [numberValue, setNumberValue] = useState(minParameter)
+  const [displayingValue, setDisplayingValue] = useState(withMask(numberValue))
   //Реф инпута
   const inputValue = useRef<HTMLInputElement>(null)
   //Реф ползунка
   const progressRef = useRef<HTMLInputElement>(null)
   //Рассчитываем значение ширины для полосы прогресса ползунка
   const calcProgress =
-    useCallback((minValue: number, maxValue: number, numberValue: number) => {
+    (minValue: number, maxValue: number, numberValue: number) => {
       const progress = 100 / ((maxValue - minValue) / (numberValue - minValue))
       if (progressRef.current === null) return
       progressRef.current.style.width = `${progress}%`
-    }, [])
-  //Обрабатываем значение из инпута с испоьзованием маски
+    }
+  //Обрабатываем значение из инпута с использованием маски
   const handleChange = () => {
     if (inputValue.current === null) return
-    const withMaskValue = withMask(Number(inputValue.current.value.replace(/\D/g, '')))
-    setCurrentValue(withMaskValue)
+    setDisplayingValue(withMask(Number(inputValue.current.value.replace(/\D/g, ''))))
   }
   //Устанавливаем значение в допустимом диапазоне
-  const range = (targetValue: string) => {
+  const range = useCallback((targetValue: string) => {
     const eventNumberValue = +targetValue.replaceAll(' ', '')
     if (eventNumberValue < minParameter) {
+      setDisplayingValue(withMask(minParameter))
       setNumberValue(minParameter)
-      setCurrentValue(withMask(minParameter))
     } else if (eventNumberValue > maxParameter) {
+      setDisplayingValue(withMask(maxParameter))
       setNumberValue(maxParameter)
-      setCurrentValue(withMask(maxParameter))
     } else {
-      setNumberValue(+targetValue.replaceAll(' ', ''))
-      setCurrentValue(targetValue)
+      setDisplayingValue(withMask(eventNumberValue))
+      setNumberValue(eventNumberValue)
     }
-  }
+  }, [minParameter, maxParameter])
   //Обрабатываем значение полученное при расфокусировке инпута
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     range(e.target.value)
@@ -71,9 +71,9 @@ export const CustomInput: FC<CustomInputProps> = ({
   }
 
   useEffect(() => {
-    handleChange()
+    range(withMask(numberValue))
     calcProgress(minParameter, maxParameter, numberValue)
-  }, [currentValue, numberValue])
+  }, [minParameter, maxParameter, numberValue])
 
   return (
     <div className={s.customInputWrap}>
@@ -86,7 +86,7 @@ export const CustomInput: FC<CustomInputProps> = ({
                        onBlur={handleBlur}
                        onKeyDown={handleKeyDown}
                        ref={inputValue}
-                       value={currentValue} />
+                       value={displayingValue} />
         </div>
         <div className={s.rangeWrap}>
           <InputRange min={minParameter}

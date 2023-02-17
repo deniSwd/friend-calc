@@ -7,7 +7,7 @@ interface ResultBoxProps {
   result: number
 }
 
-export const ResultBox:FC<ResultBoxProps> = ({title,result})=>{
+export const ResultBox: FC<ResultBoxProps> = ({ title, result }) => {
   const resultWithMask = withMask(result)
 
   return (
