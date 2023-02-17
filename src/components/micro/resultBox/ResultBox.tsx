@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import s from './resultBox.module.scss'
+import { withMask } from '../../../utils/valueWithMask'
 
 interface ResultBoxProps {
   title: string
@@ -7,7 +8,7 @@ interface ResultBoxProps {
 }
 
 export const ResultBox:FC<ResultBoxProps> = ({title,result})=>{
-  const resultWithMask = result.toLocaleString('en-US').replaceAll(',', ' ')
+  const resultWithMask = withMask(result)
 
   return (
     <div className={s.resultBox}>

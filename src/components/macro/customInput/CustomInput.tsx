@@ -2,8 +2,10 @@ import { ChangeEvent, FC, FocusEvent, KeyboardEvent, useCallback, useEffect, use
 import s from './customInput.module.scss'
 import { InputNumber } from '../../micro/inputNumber/InputNumber'
 import { InputRange } from '../../micro/inputRange/InputRange'
+import { withMask } from '../../../utils/valueWithMask'
 
 interface CustomInputProps {
+  placeholderValue: string
   minParameter: number
   maxParameter: number
   title: string
@@ -11,13 +13,14 @@ interface CustomInputProps {
 }
 
 export const CustomInput: FC<CustomInputProps> = ({
+                                                    placeholderValue,
                                                     minParameter,
                                                     maxParameter,
                                                     title,
                                                     percent
                                                   }) => {
   //Текущее значение типа string с маской
-  const [currentValue, setCurrentValue] = useState('1 500 000')
+  const [currentValue, setCurrentValue] = useState(withMask(minParameter))
   //Текущее значение типа number
   const [numberValue, setNumberValue] = useState(minParameter)
   //Реф инпута
@@ -34,10 +37,7 @@ export const CustomInput: FC<CustomInputProps> = ({
   //Обрабатываем значение из инпута с испоьзованием маски
   const handleChange = () => {
     if (inputValue.current === null) return
-    const withMaskValue =
-      (Number(inputValue.current.value.replace(/\D/g, '')))
-      .toLocaleString('en-US')
-      .replaceAll(',', ' ')
+    const withMaskValue = withMask(Number(inputValue.current.value.replace(/\D/g, '')))
     setCurrentValue(withMaskValue)
   }
   //Устанавливаем значение в допустимом диапазоне
@@ -45,10 +45,10 @@ export const CustomInput: FC<CustomInputProps> = ({
     const eventNumberValue = +targetValue.replaceAll(' ', '')
     if (eventNumberValue < minParameter) {
       setNumberValue(minParameter)
-      setCurrentValue('1 500 000')
+      setCurrentValue(withMask(minParameter))
     } else if (eventNumberValue > maxParameter) {
       setNumberValue(maxParameter)
-      setCurrentValue('10 000 000')
+      setCurrentValue(withMask(maxParameter))
     } else {
       setNumberValue(+targetValue.replaceAll(' ', ''))
       setCurrentValue(targetValue)
@@ -80,7 +80,7 @@ export const CustomInput: FC<CustomInputProps> = ({
       <div className={s.title}>{title}</div>
       <div className={s.customInput}>
         <div className={s.numberWrap}>
-          <InputNumber placeholderValue={'₽'}
+          <InputNumber placeholderValue={placeholderValue}
                        percentValue={percent}
                        onChange={handleChange}
                        onBlur={handleBlur}

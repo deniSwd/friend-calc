@@ -1,0 +1,32 @@
+@import "src/styles/vars";
+
+.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 426px;
+  height: 68px;
+  background: $orange;
+  border-radius: 40px;
+  font-family: Nekst-Black, sans-serif;
+  font-size: 30px;
+  line-height: 30px;
+  color: $white;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  outline: none;
+
+  &:hover {
+    background: $black;
+  }
+
+  &:active {
+    background: $darkgray;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}

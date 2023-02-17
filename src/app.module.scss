@@ -26,10 +26,19 @@
       color: $black;
     }
 
-    p {
-      font-family: Gilroy-Medium, sans-serif;
-      font-size: 16px;
-      color: $lightgray;
+    .inputsBox {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 51px;
+    }
+
+    .resultsBox {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
     }
   }
 }
