@@ -1,0 +1,1 @@
+export const withMask = (value: number): string => value.toLocaleString('en-US').replaceAll(',', ' ')
