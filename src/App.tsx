@@ -5,16 +5,35 @@ import { CustomInput } from './components/macro/customInput/CustomInput'
 import { ResultBox } from './components/micro/resultBox/ResultBox'
 import { Button } from './components/micro/button/Button'
 import { contractAmount, maxInitialPay, minInitialPay, monthlyPay, percentCalc } from './utils/leasingCalculation'
+import { dataType } from './mainTypes'
 
 export const App: FC = () => {
   const [carPriceValue, setCarPriceValue] = useState(3300000)
   const [initialPayValue, setInitialPayValue] = useState(420000)
   const [creditPeriodValue, setCreditPeriodValue] = useState(60)
+  const [disable, setDisable] = useState(false)
 
   const minInitialPayValue = useMemo(() => minInitialPay(carPriceValue), [carPriceValue])
   const maxInitialPayValue = useMemo(() => maxInitialPay(carPriceValue), [carPriceValue])
   const monthlyPayResult = monthlyPay(carPriceValue, initialPayValue, creditPeriodValue)
   const contractAmountResult = contractAmount(initialPayValue, creditPeriodValue, monthlyPayResult)
+
+  const data: dataType = {
+    carPrice: carPriceValue,
+    initialPay: initialPayValue,
+    creditPeriod: creditPeriodValue,
+    monthlyPay: monthlyPayResult,
+    contractAmount: contractAmountResult
+  }
+
+  const sendData = () => {
+    setDisable(true)
+    const timeOutAlert = setTimeout(() => {
+      alert(JSON.stringify(data))
+      setDisable(false)
+    }, 2000)
+    return ()=>clearTimeout(timeOutAlert)
+  }
 
   return (
     <div className={s.appWrap}>
@@ -46,7 +65,9 @@ export const App: FC = () => {
                      result={contractAmountResult} />
           <ResultBox title={'Ежемесячный платеж от'}
                      result={monthlyPayResult} />
-          <Button buttonName={'Оставить заявку'} />
+          <Button buttonName={'Оставить заявку'}
+                  disabled={disable}
+                  onClick={() => sendData()} />
         </div>
       </div>
     </div>

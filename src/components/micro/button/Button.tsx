@@ -5,9 +5,9 @@ interface ButtonProps extends ComponentProps<'button'>{
   buttonName:string
 }
 
-export const Button: FC<ButtonProps> = ({buttonName}) => {
+export const Button: FC<ButtonProps> = ({buttonName,...props}) => {
   return (
-    <button className={s.button}>
+    <button className={s.button} {...props}>
       {buttonName}
     </button>
   )
