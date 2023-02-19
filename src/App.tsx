@@ -34,7 +34,7 @@ export const App: FC = () => {
     const timeOutAlert = setTimeout(() => {
       alert(JSON.stringify(data))
       setDisable(false)
-    }, 2000)
+    }, 1000)
     return () => clearTimeout(timeOutAlert)
   }
 

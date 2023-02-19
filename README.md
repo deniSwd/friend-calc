@@ -11,5 +11,5 @@
 > yarn dev
 
 * ### Deployed on:
-> https://.../
+> https://friend-calc.vercel.app//
 
