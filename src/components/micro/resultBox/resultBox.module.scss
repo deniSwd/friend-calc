@@ -2,6 +2,7 @@
 
 .resultBox {
   width: 427px;
+
   .title {
     font-family: Gilroy-Regular, sans-serif;
     font-size: 16px;
@@ -22,6 +23,35 @@
       height: 54px;
       line-height: 44px;
       margin-left: 10px;
+    }
+  }
+
+  @media screen and (max-width: 1440px) {
+    width: 320px;
+    .result {
+      font-size: 52px;
+
+      .rub {
+        margin-left: 8px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    width: 240px;
+    .title {
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 2px;
+    }
+    .result {
+      height: 22px;
+      font-size: 22px;
+
+      .rub {
+        height: 22px;
+        line-height: 18px;
+        margin-left: 6px;
+      }
     }
   }
 }

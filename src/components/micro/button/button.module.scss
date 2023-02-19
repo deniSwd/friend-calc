@@ -29,4 +29,18 @@
   &:disabled {
     opacity: 0.4;
   }
+
+  @media screen and (max-width: 1440px) {
+    width: 320px;
+  }
+  @media screen and (max-width: 1120px) {
+    width: 345px;
+    margin-top: 44px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 280px;
+    height: 60px;
+    font-size: 22px;
+    margin-top: 2px;
+  }
 }

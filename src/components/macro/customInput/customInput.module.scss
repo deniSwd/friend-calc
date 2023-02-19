@@ -24,4 +24,21 @@
       z-index: 40;
     }
   }
+
+  @media screen and (max-width: 1440px) {
+    width: 320px;
+  }
+  @media screen and (max-width: 1120px) {
+    width: 696px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 280px;
+    height: auto;
+    margin-bottom: 25px;
+
+    .title {
+      font-size: 14px;
+      margin: 0 0 8px 0;
+    }
+  }
 }

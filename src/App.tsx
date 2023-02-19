@@ -12,12 +12,15 @@ export const App: FC = () => {
   const [initialPayValue, setInitialPayValue] = useState(420000)
   const [creditPeriodValue, setCreditPeriodValue] = useState(60)
   const [disable, setDisable] = useState(false)
-
+  //Рассчитываем минимальное значение первоначального платежа
   const minInitialPayValue = useMemo(() => minInitialPay(carPriceValue), [carPriceValue])
+  //Рассчитываем максимальное значение первоначального платежа
   const maxInitialPayValue = useMemo(() => maxInitialPay(carPriceValue), [carPriceValue])
+  //Рассичываем ежемесячный платеж
   const monthlyPayResult = monthlyPay(carPriceValue, initialPayValue, creditPeriodValue)
+  //Рассчитываем стоимость договора
   const contractAmountResult = contractAmount(initialPayValue, creditPeriodValue, monthlyPayResult)
-
+  //Формируем объект с данными
   const data: dataType = {
     carPrice: carPriceValue,
     initialPay: initialPayValue,
@@ -25,14 +28,14 @@ export const App: FC = () => {
     monthlyPay: monthlyPayResult,
     contractAmount: contractAmountResult
   }
-
+  // Отправляем данные в алерт с задержкой, чтобы увидеть disable кнопки
   const sendData = () => {
     setDisable(true)
     const timeOutAlert = setTimeout(() => {
       alert(JSON.stringify(data))
       setDisable(false)
     }, 2000)
-    return ()=>clearTimeout(timeOutAlert)
+    return () => clearTimeout(timeOutAlert)
   }
 
   return (

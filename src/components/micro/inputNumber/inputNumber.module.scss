@@ -72,5 +72,41 @@
       translate: 0 -60%;
     }
   }
+
+  @media screen and (max-width: 1440px) {
+    width: 320px;
+  }
+  @media screen and (max-width: 1120px) {
+    width: 696px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 280px;
+    height: 60px;
+
+    .input {
+      font-size: 22px;
+      line-height: 20px;
+      padding: 0 20px;
+    }
+    .placeholder {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .percent {
+      width: 67px;
+      height: 48px;
+      right: 6px;
+      top: 6px;
+      border-radius: 12px;
+      font-size: 22px;
+      line-height: 20px;
+
+      .percentPlaceholder {
+        font-size: 22px;
+        line-height: 22px;
+        right: 75px;
+      }
+    }
+  }
 }
 
